@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bahnhofsuhr</string>
+    <string name="my_analog_name">Bahnhofsuhr</string>
+    <string name="station_clock_swiss">Schweizer Bahnhofsuhr</string>
+</resources>

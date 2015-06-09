@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Station Clock</string>
+    <string name="my_analog_name">Station Clock</string>
+    <string name="station_clock_swiss">Station Clock Swiss</string>
+</resources>

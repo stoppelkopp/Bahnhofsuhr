@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="hand_dark">#000000</color>
+    <color name="hand_red">#900000</color>
+    <color name="marks">#202020</color>
+    <color name="center_stroke">#404040</color>
+    <color name="shadow">#a0000000</color>
+
+    <color name="marks_invert">#404040</color>
+    <color name="background_invert">#000000</color>
+    <color name="hands_invert">#f0f0f0</color>
+    <color name="hands_circle_invert">#000000</color>
+</resources>
