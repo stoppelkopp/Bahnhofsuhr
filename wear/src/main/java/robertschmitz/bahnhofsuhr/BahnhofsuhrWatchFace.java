@@ -184,7 +184,7 @@ public class BahnhofsuhrWatchFace extends AbstractHandbasedWatchFace implements 
 
     @Override
     protected void drawCenter(Canvas canvas) {
-        canvas.drawCircle(0, 0, 7, mCenterFillPaint);
+        canvas.drawCircle(0, 0, 7, getCenterFillPaint());
         canvas.drawCircle(0, 0, 2, getHandMinPaint());
     }
 
@@ -242,7 +242,7 @@ public class BahnhofsuhrWatchFace extends AbstractHandbasedWatchFace implements 
     }
 
     private Paint getCenterFillPaint() {
-        return mAmbientMode ? mCenterAmbientPaint : mHandMinPaint;
+        return mAmbientMode ? mCenterAmbientPaint : mCenterFillPaint;
     }
 
     private Paint getMarkBoldPaint() {
