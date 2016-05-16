@@ -1,5 +1,6 @@
 package robertschmitz.bahnhofsuhr;
 
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,10 +10,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.text.format.Time;
+import android.util.FloatMath;
 
-public class BahnhofsuhrWatchFace extends AbstractHandbasedWatchFace implements WatchFaceRenderer {
+public class BahnhofsuhrWatchFace extends AbstractHandbasedWatchFace implements WatchFaceRenderer, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private final static float TWO_PI = (float) Math.PI * 2;
+    private final static float HALF_PI = (float) Math.PI / 2;
 
     protected Paint mBackgroundPaint;
 
@@ -40,6 +43,8 @@ public class BahnhofsuhrWatchFace extends AbstractHandbasedWatchFace implements 
     private long mMillisInMinLess2 = (60 - 2) * 1000;
 
     private Path mPathSec = new Path();
+
+    private SharedPreferences mSharedPreferences;
 
     @Override
     public void onCreate(Resources resources) {
@@ -105,6 +110,15 @@ public class BahnhofsuhrWatchFace extends AbstractHandbasedWatchFace implements 
         mMarkThinPaint = new Paint(mMarkBoldPaint);
         mMarkThinPaint.setStrokeWidth(4);
 
+        mSharedPreferences = getSharedPreferences(getApplication().getPackageName(), MODE_PRIVATE);
+        mSharedPreferences.registerOnSharedPreferenceChangeListener(this);
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mSharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -196,6 +210,33 @@ public class BahnhofsuhrWatchFace extends AbstractHandbasedWatchFace implements 
     @Override
     protected HandAnimator getMinHandAnimator() {
         return new HandAnimator(new TickFunction(), 2000);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if ("tick".equals(key)) {
+            switch (BahnhofsuhrConfiguration.TickConfig.values()[sharedPreferences.getInt("tick", 0)]) {
+                default:
+                case LINEAR:
+                    mSecHandAnimator = null;
+                    break;
+                case SMOOTH:
+                    mSecHandAnimator = new HandAnimator(new EasedSwipeFunktion(), 900);
+                    break;
+                case HARD:
+                    mSecHandAnimator = new HandAnimator(new TickFunction(), 500);
+                    break;
+            }
+        }
+
+    }
+
+    private class EasedSwipeFunktion implements Function {
+
+        @Override
+        public float apply(float t) {
+            return (float) (Math.sin(t*Math.PI-HALF_PI) + 1f)/2f;
+        }
     }
 
     private class TickFunction implements Function {

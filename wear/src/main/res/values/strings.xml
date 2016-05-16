@@ -2,4 +2,8 @@
     <string name="app_name">Station Clock</string>
     <string name="my_analog_name">Station Clock</string>
     <string name="station_clock_swiss">Station Clock Swiss</string>
+    <string name="title_activity_bahnhofsuhr_configuration">Hand Animation</string>
+    <string name="config_linear">Linear movement</string>
+    <string name="config_smooth">Smooth tick</string>
+    <string name="config_hard">Hard tick</string>
 </resources>

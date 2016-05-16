@@ -18,9 +18,9 @@ abstract public class AbstractHandbasedWatchFace extends AbstractWatchFace imple
     protected Resources resources;
     public static final long MILLIS_IN_MIN = 60 * 1000;
 
-    private HandAnimator mSecHandAnimator = getSecHandAnimator();
-    private HandAnimator mMinHandAnimator = getMinHandAnimator();
-    private HandAnimator mHourHandAnimator = getHourHandAnimator();
+    protected HandAnimator mSecHandAnimator = getSecHandAnimator();
+    protected HandAnimator mMinHandAnimator = getMinHandAnimator();
+    protected HandAnimator mHourHandAnimator = getHourHandAnimator();
 
     private Matrix mMatrix;
     private float normedEdge = getNormedEdge();
@@ -186,9 +186,9 @@ abstract public class AbstractHandbasedWatchFace extends AbstractWatchFace imple
     public void onAmbientModeChanged(boolean ambientMode, boolean lowBitAmbient) {
         mAmbientMode = ambientMode;
 
-        if (ambientMode) {
+        //if (ambientMode) {
             resetAnimators();
-        }
+        //}
     }
 
     protected interface Function {

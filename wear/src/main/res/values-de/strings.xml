@@ -3,4 +3,8 @@
     <string name="app_name">Bahnhofsuhr</string>
     <string name="my_analog_name">Bahnhofsuhr</string>
     <string name="station_clock_swiss">Schweizer Bahnhofsuhr</string>
+    <string name="title_activity_bahnhofsuhr_configuration">Zeiger Animation</string>
+    <string name="config_linear">Lineare Bewegung</string>
+    <string name="config_smooth">Flüssiger Tick</string>
+    <string name="config_hard">Harter Tick</string>
 </resources>
